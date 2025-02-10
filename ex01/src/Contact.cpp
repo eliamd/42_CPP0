@@ -6,24 +6,24 @@
 /*   By: edetoh <edetoh@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 18:02:20 by edetoh            #+#    #+#             */
-/*   Updated: 2025/02/06 11:20:23 by edetoh           ###   ########.fr       */
+/*   Updated: 2025/02/10 10:46:37 by edetoh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Contact.hpp"
+#include "../includes/Contact.hpp"
 
-// Contructor
+/* ------------------------------- Constructor ------------------------------ */
 
-Contact::Contact(std::string first_name, std::string last_name, std::string nickname, std::string darkest_secret, std::string phone_numbrer)
+Contact::Contact(std::string first_name, std::string last_name, std::string nickname, std::string darkest_secret, std::string phone_number)
 {
 	this->first_name = first_name;
 	this->last_name = last_name;
 	this->nickname = nickname;
 	this->darkest_secret = darkest_secret;
-	this->phone_numbrer = phone_numbrer;
+	this->phone_number = phone_number;
 }
 
-// Setters
+/* --------------------------------- Setters -------------------------------- */
 
 void Contact::set_first_name(std::string first_name)
 {
@@ -45,12 +45,12 @@ void Contact::set_darkest_secret(std::string darkest_secret)
 	this->darkest_secret = darkest_secret;
 }
 
-void Contact::set_phone_numbrer(std::string phone_numbrer)
+void Contact::set_phone_number(std::string phone_number)
 {
-	this->phone_numbrer = phone_numbrer;
+	this->phone_number = phone_number;
 }
 
-// Getters
+/* --------------------------------- Getters -------------------------------- */
 
 std::string Contact::get_first_name() const
 {
@@ -72,7 +72,7 @@ std::string Contact::get_darkest_secret() const
 	return (this->darkest_secret);
 }
 
-std::string Contact::get_phone_numbrer() const
+std::string Contact::get_phone_number() const
 {
-	return (this->phone_numbrer);
+	return (this->phone_number);
 }

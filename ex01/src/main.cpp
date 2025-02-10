@@ -6,12 +6,12 @@
 /*   By: edetoh <edetoh@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 17:17:04 by edetoh            #+#    #+#             */
-/*   Updated: 2025/02/06 11:29:04 by edetoh           ###   ########.fr       */
+/*   Updated: 2025/02/10 10:33:22 by edetoh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PhoneBook.hpp"
-#include "Contact.hpp"
+#include "../includes/PhoneBook.hpp"
+#include "../includes/Contact.hpp"
 #include <iostream>
 
 int main()
@@ -48,7 +48,7 @@ int main()
 
 			std::cout << "Enter phone number: ";
 			std::getline(std::cin >> std::ws, phone_number);
-			newContact.set_phone_numbrer(phone_number);
+			newContact.set_phone_number(phone_number);
 
 			phonebook.add_contact(newContact);
 		}

@@ -6,23 +6,23 @@
 /*   By: edetoh <edetoh@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 18:18:22 by edetoh            #+#    #+#             */
-/*   Updated: 2025/02/06 11:13:29 by edetoh           ###   ########.fr       */
+/*   Updated: 2025/02/10 10:51:34 by edetoh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PhoneBook.hpp"
-#include "Contact.hpp"
+#include "../includes/PhoneBook.hpp"
+#include "../includes/Contact.hpp"
 #include <iostream>
 #include <iomanip>
 #include <string>
 
-// Constructor
+/* ------------------------------- Constructor ------------------------------ */
 
 PhoneBook::PhoneBook() {
 	this->amount_of_contacts = 0;
 }
 
-// Functions
+/* -------------------------------- Functions ------------------------------- */
 
 void PhoneBook::add_contact(Contact contact)
 {
@@ -30,10 +30,13 @@ void PhoneBook::add_contact(Contact contact)
 	{
 		this->contacts[this->get_amount_of_contacts()] = contact;
 		this->set_amount_of_contacts(this->get_amount_of_contacts() + 1);
+		std::cout << "Contact added successfully" << std::endl;
 	}
 	else
 	{
 		this->contacts[MAX_CONTACTS - 1] = contact;
+		std::cout << "Phonebook is full" << std::endl;
+		std::cout << "Older 8th Contact deleted, and new contact added successfully" << std::endl;
 	}
 }
 
@@ -68,7 +71,7 @@ void PhoneBook::search_contact(int index)
 		std::cout << "Last Name: " << this->contacts[index].get_last_name() << std::endl;
 		std::cout << "Nickname: " << this->contacts[index].get_nickname() << std::endl;
 		std::cout << "Darkest Secret: " << this->contacts[index].get_darkest_secret() << std::endl;
-		std::cout << "Phone Number: " << this->contacts[index].get_phone_numbrer() << std::endl;
+		std::cout << "Phone Number: " << this->contacts[index].get_phone_number() << std::endl;
 	}
 	else
 	{
@@ -76,13 +79,13 @@ void PhoneBook::search_contact(int index)
 	}
 }
 
-//Getters
+/* --------------------------------- Getters -------------------------------- */
 int PhoneBook::get_amount_of_contacts()
 {
 	return (this->amount_of_contacts);
 }
 
-//Setters
+/* --------------------------------- Setters -------------------------------- */
 void PhoneBook::set_amount_of_contacts(int amount_of_contacts)
 {
 	this->amount_of_contacts = amount_of_contacts;

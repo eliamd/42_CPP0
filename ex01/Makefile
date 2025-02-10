@@ -20,9 +20,9 @@ NC = \033[0m # No Color
 
 # =============================== SOURCES ===================================== #
 
-SRCS = 	Contact.cpp \
-		PhoneBook.cpp \
-		main.cpp
+SRCS = 	src/Contact.cpp \
+		src/PhoneBook.cpp \
+		src/main.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 

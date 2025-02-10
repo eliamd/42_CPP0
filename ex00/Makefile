@@ -20,7 +20,7 @@ NC = \033[0m # No Color
 
 # =============================== SOURCES ===================================== #
 
-SRCS = 	megaphone.cpp
+SRCS = 	src/megaphone.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 

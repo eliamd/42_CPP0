@@ -6,13 +6,14 @@
 /*   By: edetoh <edetoh@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 17:17:04 by edetoh            #+#    #+#             */
-/*   Updated: 2025/02/10 10:33:22 by edetoh           ###   ########.fr       */
+/*   Updated: 2025/02/19 14:49:03 by edetoh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/PhoneBook.hpp"
 #include "../includes/Contact.hpp"
 #include <iostream>
+#include <limits>
 
 int main()
 {
@@ -57,10 +58,26 @@ int main()
 			phonebook.display_contacts();
 			std::cout << "Enter index: ";
 			std::cin >> index;
-			phonebook.search_contact(index);
+
+			if (std::cin.fail())
+			{
+				std::cin.clear();
+				std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+				std::cout << "Invalid input. Please enter a number." << std::endl;
+			}
+			else
+			{
+				phonebook.search_contact(index);
+			}
 		}
 		else if (command == "EXIT")
+		{
 			break;
+		}
+		else
+		{
+			std::cout << "Unknown command. Please enter ADD, SEARCH, or EXIT." << std::endl;
+		}
 	}
-	return (0);
+	return 0;
 }

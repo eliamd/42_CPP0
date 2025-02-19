@@ -6,7 +6,7 @@
 /*   By: edetoh <edetoh@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 18:18:22 by edetoh            #+#    #+#             */
-/*   Updated: 2025/02/10 10:51:34 by edetoh           ###   ########.fr       */
+/*   Updated: 2025/02/19 14:31:52 by edetoh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,21 @@
 #include <iostream>
 #include <iomanip>
 #include <string>
+#include <sstream>
+
 
 /* ------------------------------- Constructor ------------------------------ */
 
 PhoneBook::PhoneBook() {
 	this->amount_of_contacts = 0;
+	this->id_oldest_contact = 0;
 }
 
 /* -------------------------------- Functions ------------------------------- */
 
 void PhoneBook::add_contact(Contact contact)
 {
+	int oldest_contact_id;
 	if (this->get_amount_of_contacts() < MAX_CONTACTS)
 	{
 		this->contacts[this->get_amount_of_contacts()] = contact;
@@ -34,9 +38,11 @@ void PhoneBook::add_contact(Contact contact)
 	}
 	else
 	{
-		this->contacts[MAX_CONTACTS - 1] = contact;
+		oldest_contact_id = get_id_oldest_contact();
+		this->contacts[oldest_contact_id] = contact;
+		set_id_oldest_contact((oldest_contact_id + 1) % MAX_CONTACTS);
 		std::cout << "Phonebook is full" << std::endl;
-		std::cout << "Older 8th Contact deleted, and new contact added successfully" << std::endl;
+		std::cout << "Older Contact deleted, and new contact added successfully" << std::endl;
 	}
 }
 
@@ -47,6 +53,13 @@ std::string formatField(const std::string &s) {
 		return std::string(10 - s.size(), ' ') + s;
 }
 
+template <typename T>
+std::string to_string_alternative(const T& value) {
+	std::ostringstream oss;
+	oss << value;
+	return oss.str();
+}
+
 void PhoneBook::display_contacts()
 {
 	std::cout << "|" << formatField("Index")
@@ -55,7 +68,7 @@ void PhoneBook::display_contacts()
 			  << "|" << formatField("Nickname") << "|" << std::endl;
 
 	for (int i = 0; i < this->amount_of_contacts; i++) {
-		std::string idx = formatField(std::to_string(i));
+		std::string idx = formatField(to_string_alternative(i));
 		std::string first = formatField(this->contacts[i].get_first_name());
 		std::string last  = formatField(this->contacts[i].get_last_name());
 		std::string nick  = formatField(this->contacts[i].get_nickname());
@@ -89,4 +102,14 @@ int PhoneBook::get_amount_of_contacts()
 void PhoneBook::set_amount_of_contacts(int amount_of_contacts)
 {
 	this->amount_of_contacts = amount_of_contacts;
+}
+
+int PhoneBook::get_id_oldest_contact()
+{
+	return (this->id_oldest_contact);
+}
+
+void PhoneBook::set_id_oldest_contact(int id_oldest_contact)
+{
+	this->id_oldest_contact = id_oldest_contact;
 }
